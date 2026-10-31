@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tholvi Vetri Kalagam | Colleges You Should Not Join</title>
+<style>
+/* ---------- 1. Design tokens ---------- */
+:root{
+  --ink:#1d1a2e;        /* deep indigo text  */
+  --paper:#f6f1e3;      /* chalk-paper base  */
+  --fail:#c4262e;       /* "failed" stamp red */
+  --pass:#1f6f50;       /* "victory" green    */
+  --gold:#e9b82f;       /* ribbon yellow      */
+  --card:#ffffff;
+  --font:"Trebuchet MS","Segoe UI",Verdana,sans-serif;
+  --head:Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);color:var(--ink);background:var(--paper);line-height:1.6;
+  /* FLEX #1: body is a column so footer sticks to the bottom */
+  min-height:100vh;display:flex;flex-direction:column;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--fail);outline-offset:3px}
+.wrap{width:100%;max-width:1150px;margin:0 auto;padding:0 20px}
+
+/* ---------- 2. NAVBAR (flex row, wraps on small screens) ---------- */
+header{background:var(--ink);color:#fff;position:sticky;top:0;z-index:10}
+.nav{
+  display:flex;flex-wrap:wrap;
+  justify-content:space-between;   /* logo left, links right */
+  align-items:center;gap:10px 24px;padding:14px 20px;
+}
+.logo{font-family:var(--head);font-size:1.4rem;font-weight:bold;display:flex;align-items:center;gap:10px}
+.logo span{background:var(--fail);border-radius:50%;width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;font-size:1rem}
+.nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 22px}
+.nav ul a{padding:6px 2px;border-bottom:2px solid transparent}
+.nav ul a:hover{border-color:var(--gold)}
+
+/* ---------- 3. HERO (flex: text + stamp, stacks on mobile) ---------- */
+.hero{background:linear-gradient(135deg,#2b2347,var(--ink));color:#fff;padding:64px 0}
+.hero .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:40px}
+.hero-text{flex:1 1 360px}   /* grow, shrink, start at 360px */
+.hero h1{font-family:var(--head);font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;margin-bottom:16px}
+.hero p{max-width:55ch;margin-bottom:26px;color:#e6e2f5}
+.btn{display:inline-block;background:var(--gold);color:var(--ink);font-weight:bold;
+  padding:12px 26px;border-radius:6px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:transparent;color:#fff;border:2px solid #fff;margin-left:8px}
+.stamp{
+  flex:0 1 260px;margin:0 auto;aspect-ratio:1;border:8px double var(--fail);color:var(--fail);
+  border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;transform:rotate(-12deg);background:#fff;font-family:var(--head);font-weight:bold;padding:16px
+}
+.stamp b{font-size:2.6rem;line-height:1}
+.stamp small{font-size:.9rem}
+
+/* ---------- 4. STATS STRIP (equal-width flex items) ---------- */
+.stats{background:var(--gold)}
+.stats .wrap{display:flex;flex-wrap:wrap}
+.stat{flex:1 1 200px;text-align:center;padding:22px 10px;border-right:1px solid rgba(29,26,46,.2)}
+.stat:last-child{border-right:0}
+.stat strong{display:block;font-family:var(--head);font-size:1.8rem}
+
+/* ---------- 5. PRODUCT / COLLEGE SECTION (flex-wrap card grid) ---------- */
+main{flex:1}                 /* main takes remaining height */
+section{padding:60px 0}
+.title{font-family:var(--head);font-size:clamp(1.6rem,3.5vw,2.3rem);margin-bottom:6px}
+.sub{margin-bottom:32px;max-width:60ch}
+.cards{display:flex;flex-wrap:wrap;gap:24px}
+.card{
+  flex:1 1 280px;max-width:100%;        /* 3 per row on desktop, 1 on phones */
+  background:var(--card);border-radius:10px;overflow:hidden;
+  display:flex;flex-direction:column;   /* nested flex: image, body, footer */
+  box-shadow:0 3px 0 var(--ink);border:2px solid var(--ink)
+}
+.card-top{padding:26px 20px;color:#fff;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.c1{background:#7a2f8f}.c2{background:#b4531a}.c3{background:#1b5f7a}
+.c4{background:#4a5b1f}.c5{background:#8a1c45}.c6{background:#33415c}
+.card-top h3{font-family:var(--head);font-size:1.25rem}
+.rank{background:var(--fail);padding:2px 10px;border-radius:20px;font-size:.8rem;white-space:nowrap}
+.card-body{flex:1;padding:18px 20px}   /* flex:1 pushes the button to the bottom */
+.card-body ul{margin:10px 0 0 18px}
+.card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:14px 20px;background:#efe9d6;border-top:2px dashed var(--ink)}
+.price{font-weight:bold;color:var(--fail)}
+.card-foot a{background:var(--ink);color:#fff;padding:7px 16px;border-radius:5px;font-size:.9rem}
+.card-foot a:hover{background:var(--fail)}
+
+/* ---------- 6. WHY US (flex row, reversible) ---------- */
+.why{background:#fff}
+.why .wrap{display:flex;flex-wrap:wrap;gap:30px}
+.why-box{flex:1 1 240px;border-left:6px solid var(--pass);padding:6px 0 6px 16px}
+.why-box h3{font-family:var(--head);margin-bottom:4px}
+
+/* ---------- 7. NEWSLETTER / CTA ---------- */
+.cta .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;
+  background:var(--ink);color:#fff;border-radius:12px;padding:34px 28px}
+.cta form{display:flex;flex-wrap:wrap;gap:10px;flex:1 1 320px;justify-content:flex-end}
+.cta input{flex:1 1 200px;padding:12px;border:0;border-radius:6px;font:inherit}
+.cta button{border:0;cursor:pointer;font:inherit}
+
+/* ---------- 8. FOOTER (multi-column flex) ---------- */
+footer{background:var(--ink);color:#d9d5ea;padding-top:44px}
+.foot{display:flex;flex-wrap:wrap;gap:32px}
+.foot div{flex:1 1 200px}
+.foot h4{color:var(--gold);margin-bottom:10px;font-family:var(--head)}
+.foot ul{list-style:none}
+.foot li{margin-bottom:6px}
+.foot a:hover{color:var(--gold)}
+.copy{margin-top:34px;padding:16px 20px;border-top:1px solid #3d3860;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:.88rem}
+
+/* ---------- 9. Responsive tweaks ---------- */
+@media (max-width:600px){
+  .nav{justify-content:center;text-align:center}
+  .nav ul{justify-content:center}
+  .btn.alt{margin:10px 0 0}
+  .stat{border-right:0;border-bottom:1px solid rgba(29,26,46,.2)}
+  .cta form{justify-content:stretch}
+  .copy{justify-content:center;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" aria-label="Main navigation">
+    <a class="logo" href="#top"><span>தோ</span> Tholvi Vetri Kalagam</a>
+    <ul>
+      <li><a href="#colleges">Colleges to Avoid</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#join">Warn a Friend</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <h1>Learn which colleges not to join, before they teach you the lesson.</h1>
+        <p>Tholvi Vetri Kalagam (“Failure to Victory Academy”) is a satirical guide to the worst college choices. We list the warning signs so you can walk the other way, and turn every failure into a win.</p>
+        <a class="btn" href="#colleges">See the Hall of Shame</a>
+        <a class="btn alt" href="#join">Warn a Friend</a>
+      </div>
+      <div class="stamp" aria-hidden="true"><small>DO NOT</small><b>JOIN</b><small>approved by Tholvi</small></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><strong>6</strong>Fictional colleges reviewed</div>
+      <div class="stat"><strong>0</strong>Placements guaranteed</div>
+      <div class="stat"><strong>100%</strong>Satire, no real names</div>
+      <div class="stat"><strong>1</strong>Lesson: research first</div>
+    </div>
+  </div>
+
+  <!-- PRODUCT SECTION -->
+  <section id="colleges">
+    <div class="wrap">
+      <h2 class="title">The Hall of Shame</h2>
+      <p class="sub">Six made-up colleges, each with the red flags real students should watch for. Any resemblance to a real institution is a coincidence.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="card-top c1"><h3>Mirage Institute of Technology</h3><span class="rank">Worst #1</span></div>
+          <div class="card-body"><p>Brochure shows a glass campus. The real one is a rented floor above a tyre shop.</p>
+            <ul><li>Labs exist only in photos</li><li>“Industry visit” = a bus ride</li></ul></div>
+          <div class="card-foot"><span class="price">Fees: ₹3,50,000/yr</span><a href="#join">Warn others</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top c2"><h3>Placement-Promise Polytechnic</h3><span class="rank">Worst #2</span></div>
+          <div class="card-body"><p>100% placement claimed, but the “company” is the owner’s cousin.</p>
+            <ul><li>Salary details never shown</li><li>Alumni can’t be found</li></ul></div>
+          <div class="card-foot"><span class="price">Fees: ₹2,80,000/yr</span><a href="#join">Warn others</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top c3"><h3>Attendance-Only Arts College</h3><span class="rank">Worst #3</span></div>
+          <div class="card-body"><p>Teaching is optional. Attendance shortage fines are not.</p>
+            <ul><li>Syllabus 10 years old</li><li>Library locked on weekdays</li></ul></div>
+          <div class="card-foot"><span class="price">Fees: ₹1,20,000/yr</span><a href="#join">Warn others</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top c4"><h3>Hidden-Fee Engineering College</h3><span class="rank">Worst #4</span></div>
+          <div class="card-body"><p>Quoted fee is a trailer. Lab, exam, bus and “development” fees make the film.</p>
+            <ul><li>No written fee breakdown</li><li>Receipts handwritten</li></ul></div>
+          <div class="card-foot"><span class="price">Fees: ₹4,00,000+/yr</span><a href="#join">Warn others</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top c5"><h3>No-Approval Management School</h3><span class="rank">Worst #5</span></div>
+          <div class="card-body"><p>Degree looks grand until you learn the university never recognised it.</p>
+            <ul><li>No AICTE / UGC listing</li><li>Refuses to show affiliation</li></ul></div>
+          <div class="card-foot"><span class="price">Fees: ₹2,00,000/yr</span><a href="#join">Warn others</a></div>
+        </article>
+        <article class="card">
+          <div class="card-top c6"><h3>Faculty-Wanted Science College</h3><span class="rank">Worst #6</span></div>
+          <div class="card-body"><p>Five departments, two teachers. The physics professor also runs the canteen.</p>
+            <ul><li>Students teach juniors</li><li>Exams postponed monthly</li></ul></div>
+          <div class="card-foot"><span class="price">Fees: ₹90,000/yr</span><a href="#join">Warn others</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why" id="why">
+    <div class="wrap" style="flex-direction:column">
+      <h2 class="title">How to Spot a Bad College</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:30px">
+        <div class="why-box"><h3>Visit in person</h3><p>Walk the labs, hostel and library yourself. Photos lie.</p></div>
+        <div class="why-box"><h3>Verify approvals</h3><p>Check university and regulator websites, not the brochure.</p></div>
+        <div class="why-box"><h3>Ask alumni</h3><p>Seniors from the last three batches will tell you the truth.</p></div>
+        <div class="why-box"><h3>Get fees in writing</h3><p>Ask for the full four-year cost before paying a rupee.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="join">
+    <div class="wrap">
+      <div><h2 class="title" style="margin:0">Know a college that cheated students?</h2>
+        <p>Send us the red flags. We will turn them into a lesson.</p></div>
+      <form onsubmit="return false">
+        <input type="email" placeholder="Your email" aria-label="Your email">
+        <button class="btn" type="submit">Send warning</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot">
+      <div><h4>Tholvi Vetri Kalagam</h4><p>A satirical awareness project: fail smart, choose better, win later.</p></div>
+      <div><h4>Explore</h4><ul><li><a href="#colleges">Hall of Shame</a></li><li><a href="#why">Spot a Bad College</a></li><li><a href="#join">Warn a Friend</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Chennai, Tamil Nadu</li><li>hello@tholvivetri.example</li></ul></div>
+    </div>
+    <div class="copy">
+      <span>© 2026 Tholvi Vetri Kalagam. All colleges shown are fictional.</span>
+      <span>Created by Aathishwaran K</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
